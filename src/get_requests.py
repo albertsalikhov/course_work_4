@@ -1,16 +1,31 @@
+from abc import ABC, abstractmethod
+
 import requests
 
-url_get = "https://httpbin.org/get" # используемый адрес для отправки запроса
 
-response = requests.get(url_get) # отправка GET-запроса
+class Parser(ABC):
+    @abstractmethod
+    def load_vacancies(self, keyword):
+        pass
 
-print(response) # вывод объекта класса Response
-# Вывод:
-# >> <Response [200]>
 
-print(response.status_code) # вывод статуса запроса, 200 означает, что всё хорошо, остальные коды нас пока не интересуют и их можно считать показателем ошибки
-# Вывод:
-# >> 200
+class HH(Parser):
+    """
+    Класс для работы с API HeadHunter
+    Класс Parser является родительским классом, который вам необходимо реализовать
+    """
 
-print(response.text) # печать ответа в виде текста того, что вернул нам внешний сервис
-# Вывод:
+    def __init__(self):
+        self.url = 'https://api.hh.ru/vacancies'
+        self.headers = {'User-Agent': 'HH-User-Agent'}
+        self.params = {'text': '', 'page': 0, 'per_page': 100}
+        self.vacancies = []
+        # super().__init__(file_worker)
+
+    def load_vacancies(self, keyword):
+        self.params['text'] = keyword
+        while self.params.get('page') != 1:
+            response = requests.get(self.url, headers=self.headers, params=self.params)
+            vacancies = response.json()['items']
+            self.vacancies.extend(vacancies)
+            self.params['page'] += 1
