@@ -11,18 +11,25 @@ class Vacancy:
 
     @staticmethod
     def cast_to_object_list(vacancy_list):
-        for vacancy in vacancy_list:
-            print(vacancy)
-            print(vacancy['alternate_url'])
-            try:
-                print(vacancy['salary']['from'])
-            except:
-                print('---')
-            try:
-                print(vacancy['salary']['to'])
-            except:
-                print('--')
-            print(vacancy['snippet']['requirement'])
+        """Преобразование набора данных из JSON в список объектов"""
+        vacancy_json_objects = []  # список JSON-объектов, с которыми можно работать
+        for vacancy_data in vacancy_list:
+            vacancy_json_string = json.dumps(vacancy_data)  # Преобразовать словарь в строку JSON
+            vacancy_json_object = json.loads(vacancy_json_string)  # Загрузить строку JSON как объект Python
+            vacancy_json_objects.append(vacancy_json_object)
+        return vacancy_json_objects
+
+            # print(vacancy['name'])
+            # print(vacancy['alternate_url'])
+            # try:
+            #     print(vacancy['salary']['from'])
+            # except:
+            #     print('---')
+            # try:
+            #     print(vacancy['salary']['to'])
+            # except:
+            #     print('--')
+            # print(vacancy['snippet']['requirement'])
 
 
 

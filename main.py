@@ -9,25 +9,13 @@ hh_api = HH()
 # Получение вакансий с hh.ru в формате JSON
 hh_vacancies = hh_api.load_vacancies("Python")
 vacancy_list = hh_api.vacancies
-# for vacancy in vacancy_list:
-#     print(vacancy)
-#     print(vacancy['name'])
-#     print(vacancy['area']['name'])
-#     try:
-#         print(vacancy['salary']['from'])
-#     except:
-#         print('---')
-#     try:
-#         print(vacancy['salary']['to'])
-#     except:
-#         print('--')
-
-
-# print(vacancy_list[4])
 
 # Преобразование набора данных из JSON в список объектов
+
 vacancies_list = Vacancy.cast_to_object_list(vacancy_list)
 print(vacancies_list)
+# objects_list = [json.loads(json_str) for json_str in vacancy_list]
+# print(objects_list)
 
 #
 # # Пример работы контструктора класса с одной вакансией
