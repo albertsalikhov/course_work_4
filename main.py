@@ -13,12 +13,9 @@ vacancy_list = hh_api.vacancies
 # Преобразование набора данных из JSON в список объектов
 
 vacancies_list = Vacancy.cast_to_object_list(vacancy_list)
-print(vacancies_list)
-# objects_list = [json.loads(json_str) for json_str in vacancy_list]
+# print(vacancies_list)
 # print(objects_list)
-
-#
-# # Пример работы контструктора класса с одной вакансией
+# # Пример работы конструктора класса с одной вакансией
 # vacancy = Vacancy("Python Developer", "", "100 000-150 000 руб.", "Требования: опыт работы от 3 лет...")
 #
 # # Сохранение информации о вакансиях в файл
