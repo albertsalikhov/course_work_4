@@ -2,19 +2,30 @@
 import json
 
 from src.get_requests import HH
+from src.json_saver import VacancySaver
 from src.vacancy import Vacancy
 
 hh_api = HH()
 
 # Получение вакансий с hh.ru в формате JSON
-hh_vacancies = hh_api.load_vacancies("Python")
+hh_vacancies = hh_api.load_vacancies("python")
 vacancy_list = hh_api.vacancies
-
 # Преобразование набора данных из JSON в список объектов
-
 vacancies_list = Vacancy.cast_to_object_list(vacancy_list)
-# print(vacancies_list)
-# print(objects_list)
+saver = VacancySaver('vacancies_list.json')
+saver.save_vacancies_to_json(vacancies_list)
+# for vac in vacancies_list:
+#     name = vac['name']
+#     vacancies_url = vac['apply_alternate_url']
+#     short_description = vac['snippet']['requirement']
+#     try:
+#         salary_from = vac['salary']['from']
+#         salary_to = vac['salary']['to']
+#         salary_currency = vac['salary']['currency']
+#     except:
+#         print('нет значения')
+#     print (f'{name}, {vacancies_url}, {salary_from} - {salary_to} {salary_currency}, {short_description}')
+
 # # Пример работы конструктора класса с одной вакансией
 # vacancy = Vacancy("Python Developer", "", "100 000-150 000 руб.", "Требования: опыт работы от 3 лет...")
 #
