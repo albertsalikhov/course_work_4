@@ -12,8 +12,8 @@ def get_vacancies_by_salary(vacancies, salary_range):
 
     filtered_vacancies = []
     for vacancy in vacancies:
-        salary_from = vacancy.get('salary_from')
-        salary_to = vacancy.get('salary_to')
+        salary_from = vacancy.salary_from
+        salary_to = vacancy.salary_to
 
         if salary_from is not None and salary_to is not None:
             if min_salary <= salary_from <= max_salary or min_salary <= salary_to <= max_salary:
@@ -30,7 +30,7 @@ def get_vacancies_by_salary(vacancies, salary_range):
 
 def sort_vacancies(vacancies):
     """Функция для сортировки вакансий по убыванию зарплаты"""
-    return sorted(vacancies, key=lambda x: x.salary, reverse=True)
+    return sorted(vacancies, key=lambda x: x.salary_to if x.salary_to is not None else x.salary_from, reverse=True)
 
 
 def get_top_vacancies(vacancies, top_n):
@@ -41,8 +41,8 @@ def get_top_vacancies(vacancies, top_n):
 def print_vacancies(vacancies):
     """Функция для вывода информации о вакансиях"""
     for vacancy in vacancies:
-        print(f"Название: {vacancy.title}")
+        print(f"Название: {vacancy.name}")
         print(f"Зарплата от: {vacancy.salary_from}")
         print(f"Зарплата до: {vacancy.salary_to}")
         print(f"Ссылка: {vacancy.vacancies_url}")
-        print(f"Краткое описание: {vacancy.short_description}")
+        print(f"Краткое описание: {vacancy.short_description}\n")

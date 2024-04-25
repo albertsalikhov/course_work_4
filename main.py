@@ -10,9 +10,9 @@ from src.vacancy import Vacancy
 
 def user_interaction():  # Функция взаимодействия с пользователем
     search_query = input("Введите поисковый запрос: ")
-    # top_n = int(input("Введите количество вакансий, которые будут отображаться в верхней N: "))
+    top_n = int(input("Введите количество вакансий, которые будут отображаться в верхней N: "))
     filter_words = input("Введите ключевые слова для фильтрации вакансий:").split()
-    # salary_range = input("Введите диапазон зарплат: ")  # Пример: 100000 - 150000
+    salary_range = input("Введите диапазон зарплат: ")  # Пример: 100000 - 150000
     hh_api = HH()
 
     hh_vacancies = hh_api.load_vacancies(search_query)  # Получение вакансий с hh.ru в формате JSON
@@ -29,17 +29,17 @@ def user_interaction():  # Функция взаимодействия с пол
         return
 
     filtered_vacancies = filter_vacancies(vacancies_list, filter_words)
-    print(filtered_vacancies)
+    # print(filtered_vacancies)
     # for vac in filtered_vacancies:
     #     print(vac)
 
-    # ranged_vacancies = get_vacancies_by_salary(filtered_vacancies, salary_range)
-    # # print(ranged_vacancies)
-    # sorted_vacancies = sort_vacancies(ranged_vacancies)
-    # top_vacancies = get_top_vacancies(sorted_vacancies, top_n)
+    ranged_vacancies = get_vacancies_by_salary(filtered_vacancies, salary_range)
+    print(ranged_vacancies)
+    sorted_vacancies = sort_vacancies(ranged_vacancies)
+    top_vacancies = get_top_vacancies(sorted_vacancies, top_n)
 
-    # print("Top vacancies:")
-    # print_vacancies(top_vacancies)
+    print("Top vacancies:\n")
+    print_vacancies(top_vacancies)
 
 
 if __name__ == '__main__':
