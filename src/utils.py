@@ -45,4 +45,5 @@ def print_vacancies(vacancies):
         print(f"Зарплата от: {vacancy.salary_from}")
         print(f"Зарплата до: {vacancy.salary_to}")
         print(f"Ссылка: {vacancy.vacancies_url}")
-        print(f"Краткое описание: {vacancy.short_description}\n")
+        cleaned_text_description = vacancy.short_description.replace("<highlighttext>", "").replace("</highlighttext>", "")
+        print(f"Краткое описание: {cleaned_text_description}\n")
