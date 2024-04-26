@@ -38,6 +38,20 @@ class Vacancy:
             else:
                 return "Зарплата у вакансий одинаковая"
 
+    def to_dict(self):
+        vacancy_dict = {
+            'name': self.name,
+            'vacancies_url': self.vacancies_url,
+            'salary': {
+                'from': self.salary_from,
+                'to': self.salary_to
+            },
+            'snippet': {
+                'requirement': self.short_description
+            }
+        }
+        return vacancy_dict
+
     @classmethod
     def from_dict(cls, vacancy_dict):
         salary_from = 0
@@ -60,7 +74,4 @@ class Vacancy:
     def __str__(self):
         return f'{self.name}, {self.vacancies_url}, {self.salary_from}, {self.salary_to}, {self.short_description}'
 
-    # # Функция для сортировки вакансий по убыванию зарплаты
-    # def sort_vacancies(vacancies):
-        # return sorted(vacancies, key=lambda x: x.salary, reverse=True)
 

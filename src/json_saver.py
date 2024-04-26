@@ -20,13 +20,6 @@ class VacancySaver(VacancyStorage):
     def __init__(self, filename):
         self.filename = filename
         self.vacancies = []
-        # try:
-        #     with open(file_path, 'r') as file:
-        #         self.vacancies = json.load(file)
-        # except FileNotFoundError:
-        #     self.vacancies = []
-        # except json.JSONDecodeError:
-        #     self.vacancies = []
 
     def add_vacancy(self, vacancy):
         self.vacancies.append(vacancy)

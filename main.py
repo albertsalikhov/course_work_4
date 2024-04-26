@@ -1,5 +1,4 @@
-# Функция для фильтрации вакансий по ключевым словам
-# Создание экземпляра класса для работы с API сайтов с вакансиями
+
 import json
 
 from src.get_requests import HH
@@ -17,6 +16,8 @@ def user_interaction():  # Функция взаимодействия с пол
 
     hh_vacancies = hh_api.load_vacancies(search_query)  # Получение вакансий с hh.ru в формате JSON
     vacancy_list = hh_api.vacancies # список вакансий
+    saver = VacancySaver('vacancies_list.json')
+    saver.vacancies_to_json(vacancy_list)
 
     if vacancy_list is None:
         print("Вакансий не найдено. Пожалуйста, попробуйте еще раз с другим поисковым запросом.")
@@ -29,14 +30,13 @@ def user_interaction():  # Функция взаимодействия с пол
         return
 
     filtered_vacancies = filter_vacancies(vacancies_list, filter_words)
-    # print(filtered_vacancies)
-    # for vac in filtered_vacancies:
-    #     print(vac)
-
     ranged_vacancies = get_vacancies_by_salary(filtered_vacancies, salary_range)
-    print(ranged_vacancies)
     sorted_vacancies = sort_vacancies(ranged_vacancies)
     top_vacancies = get_top_vacancies(sorted_vacancies, top_n)
+
+    saver = VacancySaver('top_vacancies.json')
+    vacancy_data = [vacancy.to_dict() for vacancy in top_vacancies]
+    saver.vacancies_to_json(vacancy_data)  # сохраняем топ список вакансий
 
     print("Top vacancies:\n")
     print_vacancies(top_vacancies)
