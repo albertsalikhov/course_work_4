@@ -1,9 +1,21 @@
 def filter_vacancies(vacancies, filter_words):
     """Фильтрует список вакансий по заданным ключевым словам"""
-    return [vacancy for vacancy in vacancies if any(word in vacancy.name.lower() for word in filter_words)]
+    filtered_vacancies = []
+    for vacancy in vacancies:
+        vacancy_name_lower = vacancy.name.lower()
+        for word in filter_words:
+            if word in vacancy_name_lower:
+                filtered_vacancies.append(vacancy)
+                break
+    return filtered_vacancies
+
+# def filter_vacancies(vacancies, filter_words):
+#     """Фильтрует список вакансий по заданным ключевым словам"""
+#     return [vacancy for vacancy in vacancies if any(word in vacancy.name.lower() for word in filter_words)]
 
 
 def get_vacancies_by_salary(vacancies, salary_range):
+    """Метод для извлечения вакансий из списка, которые соответствуют заданному диапазону зарплат"""
     try:
         min_salary, max_salary = map(int, salary_range.split('-'))
     except ValueError:
@@ -45,5 +57,6 @@ def print_vacancies(vacancies):
         print(f"Зарплата от: {vacancy.salary_from}")
         print(f"Зарплата до: {vacancy.salary_to}")
         print(f"Ссылка: {vacancy.vacancies_url}")
-        cleaned_text_description = vacancy.short_description.replace("<highlighttext>", "").replace("</highlighttext>", "")
-        print(f"Краткое описание: {cleaned_text_description}\n")
+        if vacancy.short_description is not None:
+            cleaned_text_description = vacancy.short_description.replace("<highlighttext>", "").replace("</highlighttext>", "")
+            print(f"Краткое описание: {cleaned_text_description}\n")
