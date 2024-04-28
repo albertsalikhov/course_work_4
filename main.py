@@ -13,7 +13,6 @@ def user_interaction():  # Функция взаимодействия с пол
 
     hh_vacancies = hh_api.load_vacancies(search_query)  # Получение вакансий с hh.ru в формате JSON
     vacancy_list = hh_api.vacancies # список вакансий
-    # print(len(vacancy_list))
     saver = VacancySaver('vacancies_list.json')
     saver.vacancies_to_json(vacancy_list)   # сохраняет список вакансий по поисковому запросу
 

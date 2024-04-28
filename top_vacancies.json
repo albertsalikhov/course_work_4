@@ -1,0 +1,57 @@
+[
+    {
+        "name": "Инженер Linux / Junior Devops",
+        "vacancies_url": "https://hh.ru/applicant/vacancy_response?vacancyId=93274633",
+        "salary": {
+            "from": 150000,
+            "to": 270000
+        },
+        "snippet": {
+            "requirement": "Cтек веб-технологий (Nginx, Apache, php-fpm). — Cредства виртуализации (Systemd-nspawn, OpenVZ, KVM). — Мониторинг, опыт работы с Zabbix или Prometheus. — "
+        }
+    },
+    {
+        "name": "Инженер Linux / Junior Devops",
+        "vacancies_url": "https://hh.ru/applicant/vacancy_response?vacancyId=96160248",
+        "salary": {
+            "from": 150000,
+            "to": 270000
+        },
+        "snippet": {
+            "requirement": "Cтек веб-технологий (Nginx, Apache, php-fpm). — Cредства виртуализации (Systemd-nspawn, OpenVZ, KVM). — Мониторинг, опыт работы с Zabbix или Prometheus. — "
+        }
+    },
+    {
+        "name": "Инженер Linux / Junior Devops",
+        "vacancies_url": "https://hh.ru/applicant/vacancy_response?vacancyId=96160013",
+        "salary": {
+            "from": 150000,
+            "to": 270000
+        },
+        "snippet": {
+            "requirement": "Cтек веб-технологий (Nginx, Apache, php-fpm). — Cредства виртуализации (Systemd-nspawn, OpenVZ, KVM). — Мониторинг, опыт работы с Zabbix или Prometheus. — "
+        }
+    },
+    {
+        "name": "Junior/Middle Computer Vision Engineer (Дальний Восток)",
+        "vacancies_url": "https://hh.ru/applicant/vacancy_response?vacancyId=98069493",
+        "salary": {
+            "from": 120000,
+            "to": 200000
+        },
+        "snippet": {
+            "requirement": "Опыт работы с нейронными сетями в production окружении от полугода. Хорошее знание <highlighttext>Python</highlighttext>. Опыт работы с TensorFlow или PyTorch. "
+        }
+    },
+    {
+        "name": "Junior/Middle Computer Vision Engineer (Дальний Восток)",
+        "vacancies_url": "https://hh.ru/applicant/vacancy_response?vacancyId=98069492",
+        "salary": {
+            "from": 120000,
+            "to": 200000
+        },
+        "snippet": {
+            "requirement": "Опыт работы с нейронными сетями в production окружении от полугода. Хорошее знание <highlighttext>Python</highlighttext>. Опыт работы с TensorFlow или PyTorch. "
+        }
+    }
+]

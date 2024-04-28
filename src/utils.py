@@ -1,3 +1,5 @@
+
+
 def filter_vacancies(vacancies, filter_words):
     """Фильтрует список вакансий по заданным ключевым словам"""
     filtered_vacancies = []
@@ -8,10 +10,6 @@ def filter_vacancies(vacancies, filter_words):
                 filtered_vacancies.append(vacancy)
                 break
     return filtered_vacancies
-
-# def filter_vacancies(vacancies, filter_words):
-#     """Фильтрует список вакансий по заданным ключевым словам"""
-#     return [vacancy for vacancy in vacancies if any(word in vacancy.name.lower() for word in filter_words)]
 
 
 def get_vacancies_by_salary(vacancies, salary_range):
