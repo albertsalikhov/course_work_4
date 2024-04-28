@@ -9,17 +9,11 @@ class Vacancy:
         self.salary_to = salary_to
         self.short_description = short_description
 
-    # def __eq__(self, other):
-    #     if not isinstance(other, Vacancy):
-    #         return False
-    #
-    #     return self.salary_from == other.salary_from and self.salary_to == other.salary_to
+    def __eq__(self, other):
+        if not isinstance(other, Vacancy):
+            return False
 
-    # def __eq__(self, other):
-        # return isinstance(other, Vacancy) and vars(self) == vars(other)
-
-    # def __hash__(self):
-    #     return hash((self.name, self.vacancies_url, self.short_description, self.salary_from, self.salary_to))
+        return self.salary_from == other.salary_from and self.salary_to == other.salary_to
 
     @staticmethod
     def cast_to_object_list(vacancy_list):
