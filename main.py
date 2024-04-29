@@ -2,6 +2,11 @@ from src.get_requests import HH
 from src.json_saver import VacancySaver
 from src.utils import filter_vacancies, get_vacancies_by_salary, sort_vacancies, get_top_vacancies, print_vacancies
 from src.vacancy import Vacancy
+import os
+
+data_dir = 'data'
+if not os.path.exists(data_dir):
+    os.makedirs(data_dir)
 
 
 def user_interaction():  # Функция взаимодействия с пользователем
@@ -13,8 +18,10 @@ def user_interaction():  # Функция взаимодействия с пол
 
     hh_vacancies = hh_api.load_vacancies(search_query)  # Получение вакансий с hh.ru в формате JSON
     vacancy_list = hh_vacancies # список вакансий
-    saver = VacancySaver('vacancies_list.json')
-    saver.vacancies_to_json(vacancy_list)   # сохраняет список вакансий по поисковому запросу
+    saver = VacancySaver(os.path.join(data_dir, 'vacancies_list.json'))
+    saver.vacancies_to_json(vacancy_list)
+    # saver = VacancySaver('vacancies_list.json')
+    # saver.vacancies_to_json(vacancy_list)   # сохраняет список вакансий по поисковому запросу
 
     if vacancy_list is None:
         print("Вакансий не найдено. Пожалуйста, попробуйте еще раз с другим поисковым запросом.")
@@ -32,11 +39,17 @@ def user_interaction():  # Функция взаимодействия с пол
     for vacancy in top_vacancies:
         print(f'\n{vacancy}')
 
-    saver = VacancySaver('top_vacancies.json')
-    vacancy_data =[]
+    saver = VacancySaver(os.path.join(data_dir, 'top_vacancies.json'))
+    vacancy_data = []
     for vacancy in top_vacancies:
         vacancy_data.append(vacancy.to_dict())
-    saver.vacancies_to_json(vacancy_data)  # сохраняем топ список вакансий
+    saver.vacancies_to_json(vacancy_data)
+
+    # saver = VacancySaver('top_vacancies.json')
+    # vacancy_data =[]
+    # for vacancy in top_vacancies:
+    #     vacancy_data.append(vacancy.to_dict())
+    # saver.vacancies_to_json(vacancy_data)  # сохраняем топ список вакансий
 
     # print("Топ вакансий:\n")
     # print_vacancies(top_vacancies)  # выводит топ вакансий
