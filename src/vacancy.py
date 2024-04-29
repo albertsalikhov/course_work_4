@@ -76,6 +76,14 @@ class Vacancy:
         return vacancy_dict
 
     def __str__(self):
-        return f'{self.name}, {self.vacancies_url}, {self.salary_from}, {self.salary_to}, {self.short_description}'
+        if self.short_description is not None:
+            cleaned_text_description = self.short_description.replace("<highlighttext>", "").replace(
+                "</highlighttext>", "")
+
+            return (f'Название: {self.name}, \n'
+                    f'Зарплата от: {self.salary_from},\n'
+                    f'Зарплата до: {self.salary_to},\n'
+                    f'Ссылка: {self.vacancies_url},\n'
+                    f'Краткое описание: {cleaned_text_description}\n')
 
 

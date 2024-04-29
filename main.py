@@ -12,7 +12,7 @@ def user_interaction():  # Функция взаимодействия с пол
     hh_api = HH()
 
     hh_vacancies = hh_api.load_vacancies(search_query)  # Получение вакансий с hh.ru в формате JSON
-    vacancy_list = hh_api.vacancies # список вакансий
+    vacancy_list = hh_vacancies # список вакансий
     saver = VacancySaver('vacancies_list.json')
     saver.vacancies_to_json(vacancy_list)   # сохраняет список вакансий по поисковому запросу
 
@@ -26,8 +26,11 @@ def user_interaction():  # Функция взаимодействия с пол
     ranged_vacancies = get_vacancies_by_salary(filtered_vacancies, salary_range)
     sorted_vacancies = sort_vacancies(ranged_vacancies)
     quantity_vacancies = len(sorted_vacancies)
-    print(f'Количество отобранных вакансий {quantity_vacancies}')
+    print(f'\nКоличество отобранных вакансий {quantity_vacancies}')
     top_vacancies = get_top_vacancies(sorted_vacancies, top_n)
+    print(f"\nТоп вакансий:{top_n}")
+    for vacancy in top_vacancies:
+        print(f'\n{vacancy}')
 
     saver = VacancySaver('top_vacancies.json')
     vacancy_data =[]
@@ -35,8 +38,8 @@ def user_interaction():  # Функция взаимодействия с пол
         vacancy_data.append(vacancy.to_dict())
     saver.vacancies_to_json(vacancy_data)  # сохраняем топ список вакансий
 
-    print("Топ вакансий:\n")
-    print_vacancies(top_vacancies)  # выводит топ вакансий
+    # print("Топ вакансий:\n")
+    # print_vacancies(top_vacancies)  # выводит топ вакансий
 
 
 if __name__ == '__main__':
